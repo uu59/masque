@@ -21,7 +21,7 @@ On Debian/Ubuntu:
 Easy crawling websites they required JavaScript.
 
     require "masque"
-    m = Masque.new(:display => 99)
+    m = Masque.new(:display => 99, :driver => :webkit) # or :driver => :poltergeist
     m.run do
       # Capybara::DSL syntax
       # https://github.com/jnicklas/capybara#the-dsl
@@ -44,6 +44,13 @@ Easy crawling websites they required JavaScript.
       JS
       puts titles.join("\n")
     end
+
+## TODO
+
+- Masque instances should have own Capybara session
+- Impl useful DSL
+- Respect driver specific features/options
+
 
 ## Contributing
 
