@@ -25,10 +25,6 @@ class Masque
         @session = session
       end
 
-      def page
-        session
-      end
-
       def method_missing(*args)
         session.__send__(*args)
       end

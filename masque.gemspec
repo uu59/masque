@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec", "~> 2.11"
   gem.add_development_dependency "sinatra"
   gem.add_development_dependency "simplecov"
+  gem.add_development_dependency "multi_json"
 end

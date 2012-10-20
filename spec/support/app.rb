@@ -18,7 +18,15 @@ class Dummy < Sinatra::Base
     </style>
     <title>hi #{params[:arg]}</title>
     <h1 id="visits">#{session[:visit]}</h1>
+    <div id="ua">#{env["HTTP_USER_AGENT"]}</div>
     <p>Hello, World!</p>
+    <div id="js"></div>
+    <script>
+      document.getElementById("js").innerHTML = JSON.stringify({
+        h: window.innerHeight,
+        w: window.innerWidth
+      });
+    </script>
     HTML
   end
 end

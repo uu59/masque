@@ -11,11 +11,6 @@ describe Masque do
         m.agent.session = Capybara::Session.new(driver, Dummy)
         m
       end
-      after do
-        masque.instance_eval do
-          @agent = nil
-        end
-      end
 
       it ".new" do
         opts = {:display => 50, :driver => driver}
@@ -45,6 +40,32 @@ describe Masque do
           File.file?(path).should be_true
           File.size(path).should be > 0
           File.unlink(path)
+        end
+
+        it "#cookies" do
+          cookie = masque.run do
+            visit "/"
+            cookies["rack.session"]
+          end
+          cookie.should_not be_nil
+        end
+
+        it "#set_headers" do
+          masque.run do
+            set_headers({"User-Agent" => "rspec"})
+            visit "/"
+            find('#ua').text.should == "rspec"
+          end
+        end
+
+        it "#resize" do
+          masque.run do
+            resize(400, 300)
+            visit "/"
+            size = MultiJson.load(find('#js').text)
+            size["w"].should == 400
+            size["h"].should == 300
+          end
         end
 
         it "return last evaluated value" do
