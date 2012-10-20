@@ -49,9 +49,9 @@ more examples are available in examples/ directory.
 
 ## TODO
 
-- Masque instances should have own Capybara session
 - Impl useful DSL
 - Respect driver specific features/options
+- Add support Selenium driver
 
 
 ## Contributing
