@@ -15,35 +15,41 @@ class Masque
 
   def initialize(options = {})
     @options = options
+    @driver = options[:driver] || :webkit
     @agent = Class.new do
-      include Capybara::DSL
       include Masque::DSL
-    end.new
+
+      attr_accessor :session
+
+      def initialize(session)
+        @session = session
+      end
+
+      def page
+        session
+      end
+
+      def method_missing(*args)
+        session.__send__(*args)
+      end
+    end.new(Capybara::Session.new(@driver))
+
+    if @driver == :webkit
+      h = Headless.new(options.merge(:destroy_at_exit => false, :reuse => true))
+      h.start
+      ObjectSpace.define_finalizer(@agent.driver.browser.instance_variable_get(:@connection)) do
+        h.destroy
+      end
+    end
   end
 
   def reset_session!
     run do
-      driver = page.driver
       driver.reset!
     end
   end
 
   def run(&block)
-    case options[:driver]
-    when :poltergeist
-      Capybara.using_driver(:poltergeist) do
-        @agent.instance_eval(&block)
-      end
-
-    when :webkit, nil
-      h = Headless.new(options)
-      h.start
-      ObjectSpace.define_finalizer(@agent) do
-        h.destroy
-      end
-      Capybara.using_driver(:webkit) do
-        @agent.instance_eval(&block)
-      end
-    end
+    @agent.instance_eval(&block)
   end
 end

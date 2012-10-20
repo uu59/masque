@@ -6,7 +6,16 @@ describe Masque do
   [:webkit, :poltergeist].each do |driver|
     context "Using #{driver} driver" do
       let(:driver) { driver }
-      let!(:masque) { Masque.new(:driver => driver) }
+      let!(:masque) do
+        m = Masque.new(:driver => driver)
+        m.agent.session = Capybara::Session.new(driver, Dummy)
+        m
+      end
+      after do
+        masque.instance_eval do
+          @agent = nil
+        end
+      end
 
       it ".new" do
         opts = {:display => 50, :driver => driver}
@@ -24,7 +33,6 @@ describe Masque do
             visit "/dummy"
             title = evaluate_script "document.title"
           end
-          mods.include?(Capybara::DSL).should be_true
           title["dummy"].should_not be_nil
         end
 
@@ -49,7 +57,6 @@ describe Masque do
       end
 
       it "#reset_session!" do
-        masque.reset_session!
         first, second, third = nil
 
         masque.run do
