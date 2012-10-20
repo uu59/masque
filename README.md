@@ -45,6 +45,8 @@ Easy crawling websites they required JavaScript.
       puts titles.join("\n")
     end
 
+more examples are available in examples/ directory.
+
 ## TODO
 
 - Masque instances should have own Capybara session
