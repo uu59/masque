@@ -17,6 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
   gem.add_dependency "capybara", "~> 1.1"
+  gem.add_dependency "headless"
   gem.add_dependency "capybara-webkit", "~> 0.12"
   gem.add_dependency "poltergeist", "~> 1.0"
   gem.add_development_dependency "rspec", "~> 2.11"
