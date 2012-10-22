@@ -4,7 +4,7 @@ require "pp"
 require "rubygems"
 require "rspec-expectations"
 require "rspec/matchers/built_in/be"
-require File.expand_path("../support/app.rb", __FILE__)
+Dir["./spec/support/**/*.rb"].each{|file| require file }
 
 if ENV["COVERAGE"]
   require "simplecov"
