@@ -51,7 +51,6 @@ more examples are available in examples/ directory.
 
 - Impl useful DSL
 - Respect driver specific features/options
-- Add support Selenium driver
 
 
 ## Contributing
