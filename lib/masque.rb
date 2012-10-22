@@ -25,8 +25,12 @@ class Masque
         @session = session
       end
 
-      def method_missing(*args)
-        session.__send__(*args)
+      def method_missing(*args, &block)
+        if block_given?
+          session.__send__(*args, &block)
+        else
+          session.__send__(*args)
+        end
       end
     end.new(Capybara::Session.new(@driver))
 

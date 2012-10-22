@@ -24,9 +24,12 @@ describe Masque do
           mods = []
           title = nil
           masque.run do
-            mods = self.class.included_modules
             visit "/dummy"
             title = evaluate_script "document.title"
+            within("#form") do
+              fill_in "a", :with => "A"
+            end
+            find('input[type="submit"]').click
           end
           title["dummy"].should_not be_nil
         end

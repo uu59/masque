@@ -21,12 +21,21 @@ class Dummy < Sinatra::Base
     <div id="ua">#{env["HTTP_USER_AGENT"]}</div>
     <p>Hello, World!</p>
     <div id="js"></div>
+    <div id="params">#{MultiJson.dump(params)}</div>
     <script>
       document.getElementById("js").innerHTML = JSON.stringify({
         h: window.innerHeight,
         w: window.innerWidth
       });
     </script>
+    <form id="form" action="/">
+      <input type="text" name="a" />
+      <select name="b">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      </select>
+      <input type="submit" />
+    </form>
     HTML
   end
 end
