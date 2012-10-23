@@ -3,12 +3,10 @@
 require "spec_helper"
 
 shared_examples_for "driver" do
-
-  it ".new" do
-    opts = {:display => 50, :driver => driver}
-    masque = Masque.new(opts)
-    masque.options.should == opts
-    masque.respond_to?(:run).should be_true
+  let!(:masque) do
+    m = Masque.new(:driver => driver)
+    m.agent.session = Capybara::Session.new(driver, Dummy)
+    m
   end
 
   describe ".run" do
