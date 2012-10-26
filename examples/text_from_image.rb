@@ -24,8 +24,10 @@ imageurl = ARGV.first || "https://assets.github.com/images/icons/emoji/trollface
 googleurl = "http://www.google.com/searchbyimage?filter=0&num=100&safe=off&image_url=#{URI.encode_www_form_component(imageurl)}"
 
 anchors = Masque.run(:driver => :webkit) do
-  page.driver.header "User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0)"
-  page.driver.header "Accept-Language", "en-US;"
+  set_headers({
+    "User-Agent" => "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0)",
+    "Accept-Language" => "en-US",
+  })
 
   puts googleurl
   visit googleurl
