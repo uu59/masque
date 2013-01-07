@@ -16,10 +16,18 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-  gem.add_dependency "capybara", "~> 1.1"
   gem.add_dependency "headless"
-  gem.add_dependency "capybara-webkit", "~> 0.12"
-  gem.add_dependency "poltergeist", "~> 1.0"
+
+  # capybara-webkit 0.14.0+ require capybara 2.0,
+  # but latest(1.0.2) poltergeist uses 1.x
+  # https://github.com/thoughtbot/capybara-webkit/blob/v0.14.0/capybara-webkit.gemspec
+  # https://github.com/jonleighton/poltergeist/blob/v1.0.2/poltergeist.gemspec
+  #
+  # (poltergeist is working in progress)
+  # https://github.com/jonleighton/poltergeist/pull/208
+  gem.add_dependency "capybara"
+  gem.add_dependency "capybara-webkit", "0.13.0"
+  gem.add_dependency "poltergeist", "1.0.2"
   gem.add_development_dependency "rspec", "~> 2.11"
   gem.add_development_dependency "sinatra"
   gem.add_development_dependency "simplecov"

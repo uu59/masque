@@ -51,6 +51,7 @@ more examples are available in examples/ directory.
 
 - Impl useful DSL
 - Respect driver specific features/options
+- Watch poltergeist support Capybara 2.x and follow it quickly
 
 
 ## Contributing
