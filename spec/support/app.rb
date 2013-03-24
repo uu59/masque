@@ -1,5 +1,6 @@
 # -- coding: utf-8
 
+require "multi_json"
 require "sinatra/base"
 
 class Dummy < Sinatra::Base

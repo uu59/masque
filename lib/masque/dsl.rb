@@ -3,7 +3,7 @@
 class Masque
   module DSL
     def save_screenshot(path)
-      page.driver.render(path)
+      page.driver.save_screenshot(path)
     end
     alias :render :save_screenshot
 
