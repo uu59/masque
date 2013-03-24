@@ -11,6 +11,9 @@ if ENV["COVERAGE"]
   SimpleCov.start
 end
 
+require 'coveralls'
+Coveralls.wear!
+
 require File.expand_path("../../lib/masque.rb", __FILE__)
 
 
