@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/uu59/masque.png?branch=master)](https://travis-ci.org/uu59/masque)
+
 # Masque
 
 <a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Noh_mask02.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/b/bd/Noh_mask02.jpg" alt="女面" /></a>
