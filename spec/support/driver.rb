@@ -68,6 +68,25 @@ shared_examples_for "driver" do
       end
       body.should_not be_nil
     end
+
+    describe "#wait_until" do
+      it "return block value" do
+        masque.run do
+          wait_until do
+            "hi"
+          end.should == "hi"
+        end
+      end
+
+      it "raise TimeoutError when timeout" do
+        expect do
+          masque.run do
+            wait_until(0.01) do
+            end
+          end
+        end.to raise_error(TimeoutError)
+      end
+    end
   end
 
   it "#reset_session!" do

@@ -1,5 +1,7 @@
 # -- coding: utf-8
 
+require "timeout"
+
 class Masque
   module DSL
     def save_screenshot(path)
@@ -53,6 +55,18 @@ class Masque
       end
     end
     alias :resize_window :resize
+
+    def wait_until(timeout = nil, &block)
+      timeout ||= 5
+      start = Time.now
+      ret = nil
+      loop do
+        break if ret = yield
+        sleep 0.01
+        raise TimeoutError if (Time.now - start) > timeout
+      end
+      ret
+    end
 
   end
 end
