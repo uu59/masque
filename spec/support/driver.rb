@@ -87,6 +87,87 @@ shared_examples_for "driver" do
         end.to raise_error(TimeoutError)
       end
     end
+
+    describe "compat" do
+      context "2.0.x with compat_capybara_20!" do
+        before do
+          masque.compat_capybara_20!
+        end
+
+        context "config.match = :one" do
+          it "raise error multiple elements found" do
+            expect do
+              masque.run do
+                visit "/"
+                find "div"
+              end
+            end.to raise_error(Capybara::Ambiguous)
+          end
+        end
+
+        context "config.exact_options = true" do
+          it "don't find ambiguous text matching" do
+            expect do
+              masque.run do
+                visit "/"
+                page.select "1", :from => "numbers"
+              end
+            end.to raise_error(Capybara::ElementNotFound)
+          end
+        end
+
+        context "config.ignore_hidden_elements = true" do
+          it "don't find hidden element" do
+            expect do
+              masque.run do
+                visit "/dummy"
+                find "title", :text => "hi dummy"
+              end
+            end.to raise_error(Capybara::ElementNotFound)
+          end
+        end
+
+        context "config.visible_text_only = true" do
+          it do
+            pending "capybara-webkit 1.0.0 can't handle correctly" if driver == :webkit
+
+            masque.run do
+              visit "/"
+              find("#hide-text").text.should == ""
+            end
+          end
+        end
+      end
+
+      context "1.x with compat_capybara_1x!" do
+        before do
+          masque.compat_capybara_1x!
+        end
+
+        context "config.match = :prefer_exact" do
+          it "don't raise error multiple elements found" do
+            expect do
+              masque.run do
+                visit "/"
+                find "div"
+              end
+            end.to_not raise_error
+          end
+        end
+
+        context "config.ignore_hidden_elements = false" do
+          it "can find hidden element" do
+            expect do
+              masque.run do
+                visit "/dummy"
+                find "title", :text => "hi dummy"
+              end
+            end.to_not raise_error
+          end
+        end
+
+      end
+    end
   end
 
   it "#reset_session!" do

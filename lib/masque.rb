@@ -52,4 +52,20 @@ class Masque
   def run(&block)
     @agent.instance_eval(&block)
   end
+
+  def compat_capybara_20!
+    Capybara.configure do |config|
+      config.match = :one
+      config.exact_options = true
+      config.ignore_hidden_elements = true
+      config.visible_text_only = true
+    end
+  end
+
+  def compat_capybara_1x!
+    Capybara.configure do |config|
+      config.match = :prefer_exact
+      config.ignore_hidden_elements = false
+    end
+  end
 end

@@ -21,8 +21,13 @@ class Dummy < Sinatra::Base
     <h1 id="visits">#{session[:visit]}</h1>
     <div id="ua">#{env["HTTP_USER_AGENT"]}</div>
     <p>Hello, World!</p>
+    <div id="hide-text"><p style="display: none">hide text</p></div>
     <div id="js"></div>
     <div id="params">#{MultiJson.dump(params)}</div>
+    <select id="numbers">
+      <option value="10">10</option>
+      <option value="11">11</option>
+    </select>
     <script>
       document.getElementById("js").innerHTML = JSON.stringify({
         h: window.innerHeight,
