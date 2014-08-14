@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/uu59/masque.png?branch=master)](https://travis-ci.org/uu59/masque)
 [![Coverage Status](https://coveralls.io/repos/uu59/masque/badge.png?branch=master)](https://coveralls.io/r/uu59/masque)
+[![Code Climate](https://codeclimate.com/github/uu59/masque/badges/gpa.svg)](https://codeclimate.com/github/uu59/masque)
+[![Gem Version](https://badge.fury.io/rb/masque.svg)](http://badge.fury.io/rb/masque)
 
 # Masque
 
