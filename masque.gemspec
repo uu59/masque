@@ -16,10 +16,10 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-  gem.add_dependency "headless"
-  gem.add_dependency "capybara" # maybe 2.1.0
-  gem.add_dependency "capybara-webkit", "~> 1.0.0"
-  gem.add_dependency "poltergeist", "~> 1.3.0"
+  gem.add_development_dependency "headless"
+  gem.add_development_dependency "capybara", "~> 2.3.0"
+  gem.add_development_dependency "capybara-webkit", "~> 1"
+  gem.add_development_dependency "poltergeist", "~> 1"
   gem.add_development_dependency "rspec", "~> 2.11"
   gem.add_development_dependency "sinatra"
   gem.add_development_dependency "simplecov"

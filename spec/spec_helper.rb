@@ -2,7 +2,7 @@
 
 require "pp"
 require "rubygems"
-require "rspec-expectations"
+require "rspec/expectations"
 require "rspec/matchers/built_in/be"
 Dir["./spec/support/**/*.rb"].each{|file| require file }
 
