@@ -21,6 +21,12 @@ On Debian/Ubuntu:
     $ sudo apt-get install libqt4-dev xvfb libicu48 ttf-ubuntu-font-family
     $ gem install masque
 
+
+On Mac OS X (assumes you have [Homebrew](http://brew.sh) installed):
+
+    $ brew install qt
+    $ gem install masque
+
 ## Usage
 
 Easy crawling websites they required JavaScript.
