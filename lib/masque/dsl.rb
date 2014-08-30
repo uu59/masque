@@ -47,7 +47,11 @@ class Masque
     def resize(x, y)
       case driver_name
       when :webkit
-        driver.resize_window(x, y)
+        if driver.respond_to?(:resize_to)
+          driver.resize_to(x, y)
+        else
+          driver.resize_window(x, y)
+        end
       when :poltergeist
         driver.resize(x, y)
       else

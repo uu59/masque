@@ -1,6 +1,10 @@
 require "capybara"
 require "capybara/dsl"
-require "capybara/webkit"
+begin
+  require "capybara/webkit"
+rescue LoadError
+  warn "capybara-webkit gem is not found (that is optional)"
+end
 require 'capybara/poltergeist'
 require "headless"
 require "masque/version"
@@ -15,7 +19,7 @@ class Masque
 
   def initialize(options = {})
     @options = options
-    @driver = options[:driver] || :webkit
+    @driver = options[:driver] || :poltergeist
 
     case options[:capybara_compat]
     when "2.1"
