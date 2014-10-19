@@ -2,11 +2,11 @@ require "capybara"
 require "capybara/dsl"
 begin
   require "capybara/webkit"
+  require "headless"
 rescue LoadError
   warn "capybara-webkit gem is not found (that is optional)"
 end
 require 'capybara/poltergeist'
-require "headless"
 require "masque/version"
 require "masque/dsl"
 
